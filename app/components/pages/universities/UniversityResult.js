@@ -8,29 +8,29 @@ export default class UniversityResult extends Component {
     }
 
     render() {
-        let {post, isAuthor, awaitStatuses, awaitErrors} = this.props;
+        let {university, isAuthor, awaitStatuses, awaitErrors} = this.props;
         return (
             <WrapContainer animateIn="fadeIn">
-                {awaitStatuses.getResultSummary == 'pending' && <Loading text="Post is loading"/>}
+                {awaitStatuses.getResultSummary == 'pending' && <Loading text="Loading"/>}
                 {awaitStatuses.getResultSummary == 'success' &&
                 <div className="post-view">
                     <div className="clearfix">
                         <div className="pull-left">
-                            <h1 className="title">{post.title}</h1>
-                            {"post.user" &&
+                            <h1 className="title">{university.title}</h1>
+                            {"university.user" &&
                             <div className="meta">
                                 <ul>
-                                    <li className="user"><i className="icon-user"/> {"post.user.first_name"}</li>
+                                    <li className="user"><i className="icon-user"/> {"university.user.first_name"}</li>
                                 </ul>
                             </div>
                             }
                         </div>
                         {isAuthor &&
-                            <a href={`#/posts/edit/${post.id}`} className="btn btn-sm pull-right btn-red"><i className="icon-pencil"/> Edit</a>
+                            <a href={`#/university/edit/${university.id}`} className="btn btn-sm pull-right btn-red"><i className="icon-pencil"/> Edit</a>
                         }
                     </div>
                     <div className="content">
-                        <Editors.EditorRich defaultContentState={"post.content"} readOnly={true}/>
+                        {university.content}
                     </div>
                 </div>
                 }
@@ -43,7 +43,7 @@ export default class UniversityResult extends Component {
 }
 
 UniversityResult.propTypes = {
-    post: PropTypes.shape({
+    university: PropTypes.shape({
         user: PropTypes.object
     }),
     isAuthor: PropTypes.bool,

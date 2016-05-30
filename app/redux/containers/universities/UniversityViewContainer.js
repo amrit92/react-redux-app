@@ -18,27 +18,28 @@ class UniversityViewContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.post_id != nextProps.post_id) {
-            this.props.getResultSummary(nextProps.post_id);
+        if (this.props.university_id != nextProps.university_id) {
+            this.props.getResultSummary(nextProps.university_id);
         }
     }
 
     componentDidUpdate() {
-        if (this.props.post.uid == this.props.uid && !this.state.isAuthor && this.props.post.uid) {
+        if (this.props.university.uid == this.props.uid && !this.state.isAuthor && this.props.university.uid) {
             this.setState({isAuthor: true});
         }
-        if (this.props.post.title) {
-            setTitle(this.props.post.title);
+        if (this.props.university.title) {
+            setTitle(this.props.university.title);
         }
     }
 
     componentDidMount() {
-        this.props.getResultSummary(this.props.post_id);
+        this.props.getResultSummary(this.props.university_id);
     }
 
     render() {
         return (
             <div>
+                <UniversityView {...this.props} isAuthor={this.state.isAuthor}/>
                 <UniversityResult {...this.props} isAuthor={this.state.isAuthor}/>
             </div>
         )
@@ -48,8 +49,8 @@ class UniversityViewContainer extends Component {
 const mapStateToProps = (state, ownProps)=> {
     return {
         uid: state.auth.authenticated.user.uid,
-        post: state.posts.currentPost,
-        post_id: ownProps.params.id
+        university: state.results.currentUniversity,
+        university_id: ownProps.params.id
     }
 }
 

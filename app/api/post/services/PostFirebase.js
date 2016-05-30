@@ -169,7 +169,7 @@ export default class PostFirebase {
         return new Promise(resolve => {
           setTimeout(() => {
             let profile = {first_name:"amrit"};
-            let post = {title:"Fiat", user:profile, color:"white"};
+            let post = {title:"Fiat", user:profile, color:"white", content: "hihi content"};
             resolve(post);
           }, 1000);
         });

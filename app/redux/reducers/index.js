@@ -9,6 +9,7 @@ import await from './await';
 export default combineReducers({
     auth,
     posts,
+    results,
     form: formReducer,
     await
 })

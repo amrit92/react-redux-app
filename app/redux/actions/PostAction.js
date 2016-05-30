@@ -61,18 +61,6 @@ export function getPostView(id) {
     }
 }
 
-export function getResultSummary(id) {
-    return (dispatch) => {
-        dispatch({
-            type: RESULT_VIEW,
-            AWAIT_MARKER,
-            payload: {
-                getResultSummary: PostApi.getResultSummary(id)
-            }
-        })
-    }
-}
-
 export function deletePost(id){
     return (dispatch) => {
         dispatch({

@@ -1,5 +1,5 @@
 import {
-    POST_LISTS, POST_CREATE, POST_VIEW, POST_EDIT, POST_RESET, POST_LISTS_LOAD_MORE, RESULT_VIEW
+    POST_LISTS, POST_CREATE, POST_VIEW, POST_EDIT, POST_RESET, POST_LISTS_LOAD_MORE
 } from '../actions/PostAction';
 import update from 'react-addons-update';
 import {createReducer} from 'redux-create-reducer';
@@ -29,11 +29,6 @@ export default createReducer(getInitialState(), {
     [POST_VIEW](state, action){
         return update(state, {
             currentPost: {$set: action.payload.getPost}
-        });
-    },
-    [RESULT_VIEW](state, action){
-        return update(state, {
-            currentPost: {$set: action.payload.getResultSummary}
         });
     },
     [POST_RESET](state){

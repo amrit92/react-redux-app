@@ -1,4 +1,4 @@
 import Firebase from 'firebase';
-export default new Firebase('http://vndev-chat.firebaseio.com');
+export default new Firebase('http://torrid-fire-1278.firebaseio.com/');
 
 

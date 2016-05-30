@@ -8,46 +8,49 @@ export default class UniversityView extends Component {
     }
 
     render() {
-        let {description, awaitStatuses, awaitErrors} = this.props;
+        let {university, isAuthor, awaitStatuses, awaitErrors} = this.props;
         return (
             <WrapContainer animateIn="fadeIn">
-                {awaitStatuses.getPost == 'pending' && <Loading text="Post is loading"/>}
-                {awaitStatuses.getPost == 'success' &&
+                {awaitStatuses.getResultSummary == 'pending' && <Loading text=""/>}
+                {awaitStatuses.getResultSummary == 'success' &&
                 <div className="post-view">
                     <div className="clearfix">
                         <div className="pull-left">
-                            <h1 className="title">{post.title}</h1>
-                            {
+                            <h1 className="title">{university.title}</h1>
+                            {"university.user" &&
                             <div className="meta">
                                 <ul>
-                                    <li className="user"><i className="icon-user"/> {"post.user.first_name"}</li>
+                                    <li className="user"><i className="icon-user"/> {"university.user.first_name"}</li>
                                 </ul>
                             </div>
                             }
                         </div>
+                        {isAuthor &&
+                            <a href={`#/university/edit/${university.id}`} className="btn btn-sm pull-right btn-red"><i className="icon-pencil"/> Edit</a>
+                        }
                     </div>
                     <div className="content">
-                        <Editors.EditorRich defaultContentState={post.content} readOnly={true}/>
+                        {university.content}
                     </div>
                 </div>
                 }
-                {awaitErrors.getPost &&
-                <p>{awaitErrors.getPost}</p>
+                {awaitErrors.getResultSummary &&
+                <p>{awaitErrors.getResultSummary}</p>
                 }
             </WrapContainer>
         )
     }
 }
 
-UniversityView.propTypes = { 
-    post: PropTypes.shape({
+UniversityView.propTypes = {
+    university: PropTypes.shape({
         user: PropTypes.object
     }),
     isAuthor: PropTypes.bool,
     awaitStatuses:PropTypes.shape({
-        getPost: PropTypes.string
+        getResultSummary: PropTypes.string
     }),
     awaitErrors:PropTypes.shape({
-        getPost: PropTypes.string
+        getResultSummary: PropTypes.string
     })
 }

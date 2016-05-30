@@ -9,7 +9,7 @@ const getInitialState = () => {
     return {
         lists: [],
         currentItems: postsList.perPage, //pagination
-        currentPost: {
+        currentUniversity: {
             user: {}
         }
     }
@@ -18,7 +18,7 @@ const getInitialState = () => {
 export default createReducer(getInitialState(), {
     [RESULT_VIEW](state, action){
         return update(state, {
-            currentPost: {$set: action.payload.getResultSummary}
+            currentUniversity: {$set: action.payload.getResultSummary}
         });
     }
 });
