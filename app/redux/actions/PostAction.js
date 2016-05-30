@@ -10,6 +10,7 @@ export const POST_VIEW = 'post view';
 export const POST_EDIT = 'post edit';
 export const POST_DELETE = 'post delete';
 export const POST_RESET = 'post reset';
+export const RESULT_VIEW = 'result view';
 
 export function createPost(post) {
     return (dispatch, getState)=> {
@@ -47,6 +48,7 @@ export function getPostsList() {
     }
 }
 
+
 export function getPostView(id) {
     return (dispatch) => {
         dispatch({
@@ -54,6 +56,18 @@ export function getPostView(id) {
             AWAIT_MARKER,
             payload: {
                 getPost: PostApi.getPost(id)
+            }
+        })
+    }
+}
+
+export function getResultSummary(id) {
+    return (dispatch) => {
+        dispatch({
+            type: RESULT_VIEW,
+            AWAIT_MARKER,
+            payload: {
+                getResultSummary: PostApi.getResultSummary(id)
             }
         })
     }

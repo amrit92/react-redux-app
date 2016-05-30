@@ -6,6 +6,7 @@ import AppMaster from '../components/layouts/master/AppMaster';
 
 import {LoginContainer, ProfileContainer, RegisterContainer, LogoutContainer} from '../redux/containers/member/index';
 import {CreatePostContainer, PostsListContainer, PostViewContainer, EditPostContainer} from '../redux/containers/posts/index';
+import {UniversityViewContainer} from '../redux/containers/universities/index';
 
 
 
@@ -24,6 +25,12 @@ export default () => {
                 <Route path="create" component={redirectIfGuest(CreatePostContainer)}/>
                 <Route path="edit/:id" component={redirectIfGuest(EditPostContainer)}/>
                 <Route path=":id" component={PostViewContainer}></Route>
+            </Route>
+            <Route path="/universities">
+                <IndexRoute component={PostsListContainer}/>
+                <Route path="create" component={redirectIfGuest(CreatePostContainer)}/>
+                <Route path="edit/:id" component={redirectIfGuest(EditPostContainer)}/>
+                <Route path=":id" component={UniversityViewContainer}></Route>
             </Route>
         </Route>
     )

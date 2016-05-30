@@ -98,6 +98,8 @@ export default class PostFirebase {
             try {
                 postFirebase.on('value', function (snapshot) {
                     let post = snapshot.val();
+                                        console.log(snapshot.val());
+
                     if (post) {
                         Auth.getProfile(post.uid).then((profile)=> {
                             post.user = profile;
@@ -116,6 +118,62 @@ export default class PostFirebase {
         return promise;
     }
 
+    getResultSummary(id) {
+        // let postFirebase = firebase.child('posts').child(id);
+        // let promise = new Promise((resolve, reject) => {
+        //     try {
+        //         postFirebase.on('value', function (snapshot) {
+        //             let post = snapshot.val();
+        //                                 console.log(snapshot.val());
+
+        //             if (post) {
+        //                 Auth.getProfile(post.uid).then((profile)=> {
+        //                     post.user = profile;
+        //                     resolve(mergeObjectWithKey(post, id));
+        //                 });
+        //             }
+        //             else {
+        //                 reject('Post\'s not exists');
+        //             }
+        //         });
+        //     }
+        //     catch (e) {
+        //         reject(e.message);
+        //     }
+        // });
+        // return promise;
+
+        // let postFirebase = firebase.child('posts').child(id);
+        // // let promise = new Promise((resolve, reject) => {
+        // //     try {
+        // //         postFirebase.on('value', function (snapshot) {
+        // //             // let post = snapshot.val();
+        // //             let profile = {first_name:"amrit"};
+        // //         let post = {title:"Fiat", user:profile, color:"white"};
+        // //             if (post) {
+        // //                 // Auth.getProfile(post.uid).then((profile)=> {
+        // //                 //     post.user = profile;
+        // //                     resolve(mergeObjectWithKey(post, id));
+        // //                 // });
+        // //             }
+        // //             else {
+        // //                 reject('Post\'s not lel');
+        // //             }
+        // //         });
+        // //     }
+        // //     catch (e) {
+        // //         reject(e.message);
+        // //     }
+        // // });
+        // // return promise;
+        return new Promise(resolve => {
+          setTimeout(() => {
+            let profile = {first_name:"amrit"};
+            let post = {title:"Fiat", user:profile, color:"white"};
+            resolve(post);
+          }, 1000);
+        });
+    }
     deletePost(id) {
         let postFirebase = firebase.child('posts').child(id);
         return new Promise((resolve, reject) => {

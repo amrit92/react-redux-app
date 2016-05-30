@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import auth from './auth';
 import posts from './posts';
+import results from './results';
 import {reducer as formReducer} from 'redux-form';
 import {reducer as awaitReducer} from 'redux-await';
 import await from './await';

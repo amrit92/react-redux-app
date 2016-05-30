@@ -21,7 +21,7 @@ export default class Header extends Component {
                             <NavItem eventKey={4} href="#/posts"><i className="icon-notebook"/> Posts</NavItem>
                             <NavItem eventKey={4} href="#/posts/create"><i className="icon-plus"/> New post</NavItem>
                             <NavItem eventKey={4} href="https://github.com/thanhtungdp/react-redux-firebase-blog"><i className="fa fa-github"/> Github</NavItem>
-                            <NavItem eventKey={4} href="https://github.com/thanhtungdp/redux-500api"><i className="icon-layers"/> Starter kit</NavItem>
+                            <NavItem eventKey={4} href="#/universities/list"><i className="icon-layers"/> Universities</NavItem>
                         </Nav>
                         { guest ?
                             <Nav pullRight>
