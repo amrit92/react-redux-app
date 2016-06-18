@@ -18,7 +18,7 @@ const getInitialState = () => {
             guest: true,
             user: {},
             profile: {
-                updated_at: '',
+                updated_at: ''
             }
         },
         register: {

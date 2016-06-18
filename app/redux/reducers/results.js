@@ -1,5 +1,5 @@
 import {
-    RESULT_VIEW
+    RESULT_VIEW, UNIVERSITY_VIEW
 } from '../actions/UniversityAction';
 import update from 'react-addons-update';
 import {createReducer} from 'redux-create-reducer';
@@ -11,6 +11,9 @@ const getInitialState = () => {
         currentItems: postsList.perPage, //pagination
         currentUniversity: {
             user: {}
+        },
+        currentResult: {
+            user: {}
         }
     }
 }
@@ -18,7 +21,12 @@ const getInitialState = () => {
 export default createReducer(getInitialState(), {
     [RESULT_VIEW](state, action){
         return update(state, {
-            currentUniversity: {$set: action.payload.getResultSummary}
+            currentResult: {$set: action.payload.getResultSummary}
+        });
+    },
+    [UNIVERSITY_VIEW](state, action){
+        return update(state, {
+            currentUniversity: {$set: action.payload.getUniversityView}
         });
     }
 });

@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {setTitle, reduxAwait} from '../../../utils/index';
 import {UniversityView, UniversityResult} from '../../../components/pages/universities/index';
 import {resetCurrentPost} from '../../actions/PostAction';
-import {getResultSummary} from '../../actions/UniversityAction';
+import {getResultSummary, getUniversityView} from '../../actions/UniversityAction';
 
 class UniversityViewContainer extends Component {
     constructor() {
@@ -20,6 +20,7 @@ class UniversityViewContainer extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.university_id != nextProps.university_id) {
             this.props.getResultSummary(nextProps.university_id);
+            this.props.getUniversityView(nextProps.university_id);
         }
     }
 
@@ -34,13 +35,13 @@ class UniversityViewContainer extends Component {
 
     componentDidMount() {
         this.props.getResultSummary(this.props.university_id);
+        this.props.getUniversityView(this.props.university_id);        
     }
 
     render() {
         return (
             <div>
                 <UniversityView {...this.props} isAuthor={this.state.isAuthor}/>
-                <UniversityResult {...this.props} isAuthor={this.state.isAuthor}/>
             </div>
         )
     }
@@ -49,13 +50,14 @@ class UniversityViewContainer extends Component {
 const mapStateToProps = (state, ownProps)=> {
     return {
         uid: state.auth.authenticated.user.uid,
+        university_result: state.results.curretResult,
         university: state.results.currentUniversity,
         university_id: ownProps.params.id
     }
 }
 
 const mapDispatchToProps = (dispatch)=> {
-    return bindActionCreators({getResultSummary, resetCurrentPost}, dispatch);
+    return bindActionCreators({getResultSummary, resetCurrentPost, getUniversityView}, dispatch);
 }
 
 export default reduxAwait.connect(mapStateToProps, mapDispatchToProps)(UniversityViewContainer);

@@ -7,35 +7,29 @@ export default class UniversityView extends Component {
         super(...arguments)
     }
 
-    render() {
+    render() {        
         let {university, isAuthor, awaitStatuses, awaitErrors} = this.props;
         return (
             <WrapContainer animateIn="fadeIn">
-                {awaitStatuses.getResultSummary == 'pending' && <Loading text=""/>}
-                {awaitStatuses.getResultSummary == 'success' &&
+                {awaitStatuses.getUniversityView == 'pending' && <Loading text=""/>}
+                {awaitStatuses.getUniversityView == 'success' && 
+
                 <div className="post-view">
                     <div className="clearfix">
                         <div className="pull-left">
-                            <h1 className="title">{university.title}</h1>
-                            {"university.user" &&
-                            <div className="meta">
-                                <ul>
-                                    <li className="user"><i className="icon-user"/> {"university.user.first_name"}</li>
-                                </ul>
-                            </div>
-                            }
+                            <h1 className="title">{university.name}</h1>
                         </div>
                         {isAuthor &&
                             <a href={`#/university/edit/${university.id}`} className="btn btn-sm pull-right btn-red"><i className="icon-pencil"/> Edit</a>
                         }
                     </div>
                     <div className="content">
-                        {university.content}
+                        {"university.content"}
                     </div>
                 </div>
                 }
-                {awaitErrors.getResultSummary &&
-                <p>{awaitErrors.getResultSummary}</p>
+                {awaitErrors.getUniversityView &&
+                <p>{awaitErrors.getUniversityView}</p>
                 }
             </WrapContainer>
         )
@@ -48,9 +42,9 @@ UniversityView.propTypes = {
     }),
     isAuthor: PropTypes.bool,
     awaitStatuses:PropTypes.shape({
-        getResultSummary: PropTypes.string
+        getUniversityView: PropTypes.string
     }),
     awaitErrors:PropTypes.shape({
-        getResultSummary: PropTypes.string
+        getUniversityView: PropTypes.string
     })
 }

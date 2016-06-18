@@ -1,7 +1,7 @@
 // Packages
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-import {reduxForm} from 'redux-form';
+import {reduxForm, addArrayValue} from 'redux-form';
 import validator from 'validator';
 
 //Components
@@ -34,12 +34,13 @@ const mapDispatchToProps = (dispatch)=> {
     return bindActionCreators({updateProfile, getProfile, resetAwait}, dispatch);
 }
 
-const fields = ['first_name', 'last_name', 'description'];
+const fields = ['first_name', 'last_name', 'description', 'inputs[].name', 'inputs[].age', 'program', 'major', 'specialization', 'term', 'gre_quant', 'gre_verbal', 'gre_awa', 'toefl', 'ietls', 'ug_college_name', 'ug_department_name', 'grade', 'topper_grade', 'grade_scale'];
 
 const validate = values => {
     const errors = {};
     const {first_name, last_name} = values;
-    fields.map((field) => {
+    let fieldsToVerify = ['first_name', 'last_name'];
+    fieldsToVerify.map((field) => {
         if (!values[field]) {
             errors[field] = `Required`;
         }
@@ -65,6 +66,8 @@ let profileForm = reduxForm({
     form: 'initializing',
     fields,
     validate
+}, undefined, {
+  addValue: addArrayValue // mapDispatchToProps (will bind action creator to dispatch)
 })(ProfileContainer);
 
 export default reduxAwait.connect(mapStateToProps, mapDispatchToProps)(profileForm)

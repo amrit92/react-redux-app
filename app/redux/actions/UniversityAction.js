@@ -1,7 +1,8 @@
 import {AWAIT_MARKER} from 'redux-await';
-import PostApi from '../../api/post/index';
+import UniversityApi from '../../api/university/index';
 
 export const RESULT_VIEW = 'result view';
+export const UNIVERSITY_VIEW = 'university view';
 
 export function getResultSummary(id) {
     return (dispatch) => {
@@ -9,7 +10,19 @@ export function getResultSummary(id) {
             type: RESULT_VIEW,
             AWAIT_MARKER,
             payload: {
-                getResultSummary: PostApi.getResultSummary(id)
+                getResultSummary: UniversityApi.getResultSummary(id)
+            }
+        })
+    }
+}
+
+export function getUniversityView(id) {
+    return (dispatch) => {
+        dispatch({
+            type: UNIVERSITY_VIEW,
+            AWAIT_MARKER,
+            payload: {
+                getUniversityView: UniversityApi.getUniversity(id)
             }
         })
     }
