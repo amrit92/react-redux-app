@@ -2,10 +2,11 @@
   "name": "react-starter",
   "version": "1.0.0",
   "description": "starter",
-  "main": "index.js",
+  "main": "public/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/webpack-dev-server --progress",
+    "start": "supervisor public/server.js",
+    "dev": "node_modules/.bin/webpack-dev-server --progress",
     "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
   },
   "repository": {

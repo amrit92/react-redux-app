@@ -11,7 +11,7 @@ class UniversitiesListContainer extends Component{
 
     componentDidMount(){
         this.props.getAllSuggestions();
-        setTitle('Posts List');
+        setTitle('Posts');
     }
 
     render(){
