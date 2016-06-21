@@ -75,4 +75,20 @@ export default class PostFirebase {
           }, 1000);
         });
     }
+
+    getUnilist() {
+        let universitiesFirebase = firebase.child('universities');
+        let promise = new Promise((resolve, reject) => {
+            try {
+                universitiesFirebase.on('value', function (snapshot) {
+                    let universities = mergeArrayObjectWithKey(snapshot.val());
+                    resolve(universities);
+                });
+            }
+            catch (err) {
+                reject(err.message);
+            }
+        });
+        return promise;
+    }
 }

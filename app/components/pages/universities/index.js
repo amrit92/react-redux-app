@@ -1,6 +1,7 @@
 import UniversityView from './UniversityView';
-import UniversityResult from './UniversityResult';;
+import UniversityResult from './UniversityResult';
+import UniversitiesList from './UniversitiesList';
 
-export default {UniversityView, UniversityResult};
+export default {UniversityView, UniversityResult, UniversitiesList};
 
-export {UniversityView, UniversityResult};
+export {UniversityView, UniversityResult, UniversitiesList};

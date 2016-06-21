@@ -16,7 +16,7 @@ export default class Login extends React.Component {
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="form">
                         <InputText title="Email" type="text" {...email}/>
                         <InputText title="Password" type="password" {...password}/>
-                        {awaitStatuses.userLogin == 'pending' && <Loading text="User is checking"/>}
+                        {awaitStatuses.userLogin == 'pending' && <Loading text="Logging in"/>}
                         {awaitErrors.userLogin && <div>{awaitErrors.userLogin}</div>}
                         <Button bsStyle="red" type="submit"
                                 disabled={awaitStatuses.userLogin == 'pending'} className="pull-right">Login</Button>

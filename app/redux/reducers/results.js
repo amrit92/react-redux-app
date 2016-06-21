@@ -1,5 +1,5 @@
 import {
-    RESULT_VIEW, UNIVERSITY_VIEW
+    RESULT_VIEW, UNIVERSITY_VIEW, UPDATE_INPUT_VALUE, GET_ALL_SUGGESTIONS, CLEAR_SUGGESTIONS, MAYBE_UPDATE_SUGGESTIONS, LOAD_SUGGESTIONS_BEGIN
 } from '../actions/UniversityAction';
 import update from 'react-addons-update';
 import {createReducer} from 'redux-create-reducer';
@@ -14,7 +14,11 @@ const getInitialState = () => {
         },
         currentResult: {
             user: {}
-        }
+        },
+        value: '',
+        isLoading: true,
+        suggestions: [],
+        allSuggestions: []
     }
 }
 
@@ -28,5 +32,37 @@ export default createReducer(getInitialState(), {
         return update(state, {
             currentUniversity: {$set: action.payload.getUniversityView}
         });
+    },
+    [GET_ALL_SUGGESTIONS](state, action){
+        return update(state, {
+            allSuggestions: {$set: action.payload.allSuggestions}
+        });
+    },
+    [UPDATE_INPUT_VALUE](state, action){
+        return update(state, {
+            value: {$set: action.value}
+        });
+    },
+    [CLEAR_SUGGESTIONS](state, action){
+        return update(state, {
+            suggestions: {$set: []}
+        });
+    },
+    [LOAD_SUGGESTIONS_BEGIN](state, action){
+        return update(state, {
+            isLoading: {$set: true}
+        });
+    },
+    [MAYBE_UPDATE_SUGGESTIONS](state, action){
+        if(action.value !== state.value) {
+        return update(state, {
+            isLoading: {$set: false}
+        });
+      }
+        return update(state, {
+            suggestions: {$set: action.suggestions},
+            isLoading: {$set: false}
+        });
     }
 });
+

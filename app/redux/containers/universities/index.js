@@ -1,7 +1,9 @@
 import UniversityViewContainer from './UniversityViewContainer';
+import UniversitiesListContainer from './UniversitiesListContainer';
 
 export default {
-    UniversityViewContainer
+    UniversityViewContainer,
+    UniversitiesListContainer
 }
 
-export {UniversityViewContainer}
+export {UniversityViewContainer, UniversitiesListContainer}

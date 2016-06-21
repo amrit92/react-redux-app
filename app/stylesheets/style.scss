@@ -7,6 +7,7 @@
 @import "./partials/header";
 @import "./partials/loading";
 @import "./pages/post_lists";
+@import "./pages/universities_list";
 
 @mixin placeholder($selector, $color) {
   #{$selector}::-webkit-input-placeholder {
