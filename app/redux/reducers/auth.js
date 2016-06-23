@@ -19,6 +19,10 @@ const getInitialState = () => {
             user: {},
             profile: {
                 updated_at: ''
+            },
+            forumProfile: {
+              token: '',
+              userId: ''
             }
         },
         register: {
@@ -37,7 +41,9 @@ export default createReducer(getInitialState(), {
         return update(state, {
             authenticated: {
                 guest: {$set: false},
-                user: {$set: action.payload.userLogin}            }
+                user: {$set: action.payload.userLogin},
+                forumProfile: {$set: action.payload.forumLogin}
+            }
         });
     },
 

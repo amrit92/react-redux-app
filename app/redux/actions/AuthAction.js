@@ -25,7 +25,8 @@ export function authLogin(email, password) {
             type: AUTH_LOGIN,
             AWAIT_MARKER,
             payload: {
-                userLogin: Auth.login(email, password)
+                userLogin: Auth.login(email, password),
+                forumLogin: Auth.forumLogin(email, password)
             }
         });
     }
