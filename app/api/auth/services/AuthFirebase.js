@@ -87,6 +87,9 @@ export default class AuthFirebase {
             firebase.unauth();
             relsove();
         })
+        this.deleteCookie("flarum_remember");
+        this.deleteCookie("flarum_userId");
+
     }
 
     /**
@@ -127,4 +130,42 @@ export default class AuthFirebase {
         });
         return promise;
     }
+
+    setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires="+ d.toUTCString();
+      document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+     deleteCookie(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    };
+
+    forumLogin(email, password) {
+      var data = JSON.stringify({
+        "identification": email,
+        "password": password
+      });
+
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      var rt = this;
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          console.log(this.responseText);
+          rt.setCookie("flarum_remember", JSON.parse(this.responseText).token,1);
+          rt.setCookie("flarum_userId", JSON.parse(this.responseText).userId,1);
+        }
+      });
+
+      xhr.open("POST", "http://eduforum-eduscape.rhcloud.com/api/token");
+      xhr.setRequestHeader("content-type", "application/json");
+      xhr.setRequestHeader("cache-control", "no-cache");
+
+      xhr.send(data);
+      var resp = xhr.responseText
+      return resp
+    }
+
 }

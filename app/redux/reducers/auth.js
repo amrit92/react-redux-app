@@ -37,8 +37,7 @@ export default createReducer(getInitialState(), {
         return update(state, {
             authenticated: {
                 guest: {$set: false},
-                user: {$set: action.payload.userLogin},
-            }
+                user: {$set: action.payload.userLogin}            }
         });
     },
 
