@@ -160,8 +160,8 @@ export default class AuthFirebase {
           rt.setCookie("flarum_userId", JSON.parse(this.responseText).userId,1);
         }
       });
-
-      xhr.open("POST", "http://forum.educron.com/api/token");
+      var full = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+      xhr.open("POST", full + "/me");
       xhr.setRequestHeader("content-type", "application/json");
       xhr.setRequestHeader("cache-control", "no-cache");
 
