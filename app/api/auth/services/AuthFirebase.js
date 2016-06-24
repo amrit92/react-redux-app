@@ -161,7 +161,7 @@ export default class AuthFirebase {
         }
       });
 
-      xhr.open("POST", "http://educron.com/api/token");
+      xhr.open("POST", "http://forum.educron.com/api/token");
       xhr.setRequestHeader("content-type", "application/json");
       xhr.setRequestHeader("cache-control", "no-cache");
 
