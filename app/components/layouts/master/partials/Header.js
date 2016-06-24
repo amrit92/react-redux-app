@@ -19,6 +19,7 @@ export default class Header extends Component {
                     <Navbar.Collapse>
                         <Nav>
                             <NavItem eventKey={4} href="#/universities"><i className="icon-layers"/> Universities</NavItem>
+                            <NavItem eventKey={4} href="http://forum.educron.com" target="_blank"><i className="icon-layers"/> Discussion</NavItem>
                         </Nav>
                         { guest ?
                             <Nav pullRight>
