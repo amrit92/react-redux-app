@@ -94,5 +94,6 @@ export function authLogout() {
     return (dispatch) => {
         dispatch({type: AUTH_LOGOUT});
         Auth.logout();
+        Auth.clearCookies();
     }
 }

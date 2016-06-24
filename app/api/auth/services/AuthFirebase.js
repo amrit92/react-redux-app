@@ -87,9 +87,11 @@ export default class AuthFirebase {
             firebase.unauth();
             relsove();
         })
-        this.deleteCookie("flarum_remember");
-        this.deleteCookie("flarum_userId");
+    }
 
+    clearCookies() {
+      this.deleteCookie("flarum_remember");
+      this.deleteCookie("flarum_userId");
     }
 
     /**
@@ -155,7 +157,6 @@ export default class AuthFirebase {
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
           console.log(this.responseText);
-          alert(this.responseText)
           rt.setCookie("flarum_remember", JSON.parse(this.responseText).token,1);
           rt.setCookie("flarum_userId", JSON.parse(this.responseText).userId,1);
         }
