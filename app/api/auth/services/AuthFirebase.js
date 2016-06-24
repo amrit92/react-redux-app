@@ -136,7 +136,7 @@ export default class AuthFirebase {
       d.setTime(d.getTime() + (exdays*24*60*60*1000));
       var expires = "expires="+ d.toUTCString();
       var path_domain = "path=/;domain=.educron.com";
-      document.cookie = cname + "=" + cvalue + "; " + expires + "; " + path_domain;
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";" + path_domain;
     }
 
      deleteCookie(name) {
@@ -155,6 +155,7 @@ export default class AuthFirebase {
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
           console.log(this.responseText);
+          alert(this.responseText)
           rt.setCookie("flarum_remember", JSON.parse(this.responseText).token,1);
           rt.setCookie("flarum_userId", JSON.parse(this.responseText).userId,1);
         }
