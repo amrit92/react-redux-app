@@ -65,14 +65,27 @@ export default class UniversitiesList extends Component {
                     <div className="university-search-heading">
                         <h1 className="title">{"Find your Dream University"}</h1>
                     </div>
-                  <div className="university-search">
-                      <Autosuggest suggestions={suggestions}
-                        onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
-                        getSuggestionValue={getSuggestionValue}
-                        renderSuggestion={renderSuggestion}
-                        onSuggestionSelected={this.onSuggestionSelected}
-                        inputProps={inputProps} />
+                  <div className="col-sm-offset-2 col-sm-8 university-search">
+                    
+                    <Autosuggest suggestions={suggestions}
+                      onSuggestionsUpdateRequested={onSuggestionsUpdateRequested}
+                      getSuggestionValue={getSuggestionValue}
+                      renderSuggestion={renderSuggestion}
+                      onSuggestionSelected={this.onSuggestionSelected}
+                      inputProps={inputProps} 
+                      theme={{
+                        input: "react-autosuggest__input form-control input-lg",
+                        container: 'react-autosuggest__container',
+                        containerOpen:'react-autosuggest__container--open',
+                        suggestionsContainer: 'react-autosuggest__suggestions-container',
+                        suggestion: 'react-autosuggest__suggestion',
+                        suggestionFocused: 'react-autosuggest__suggestion--focused',
+                        sectionContainer: 'react-autosuggest__section-container',
+                        sectionTitle: 'react-autosuggest__section-title',
+                        sectionSuggestionsContainer: 'react-autosuggest__section-suggestions-container'
 
+                      }}/>
+                      
                   </div>
                 </div>
             </WrapContainer>
