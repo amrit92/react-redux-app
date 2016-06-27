@@ -50,7 +50,7 @@ class UniversityViewContainer extends Component {
 const mapStateToProps = (state, ownProps)=> {
     return {
         uid: state.auth.authenticated.user.uid,
-        university_result: state.results.curretResult,
+        university_result: state.results.currentResult,
         university: state.results.currentUniversity,
         university_id: ownProps.params.id
     }

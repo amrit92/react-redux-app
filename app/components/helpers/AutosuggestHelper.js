@@ -33,7 +33,7 @@ export function getSuggestions(value, suggestions) {
   //   option.name.toLowerCase().slice(0, inputLength) === inputValue
   // );
   var options = {
-    extract: function(el) { return el.name; }
+    extract: function(el) { return el.acronym + el.name; }
   };
   var results = fuzzy.filter(value, suggestions, options);
   return results.map(o=>o.original);

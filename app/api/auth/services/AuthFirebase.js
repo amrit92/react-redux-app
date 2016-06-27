@@ -141,8 +141,12 @@ export default class AuthFirebase {
       document.cookie = cname + "=" + cvalue + ";" + expires + ";" + path_domain;
     }
 
-     deleteCookie(name) {
-        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+     deleteCookie(name, path='/', domain='.educron.com') {
+        // document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = name + "=" +
+        ((path) ? ";path="+path:"")+
+        ((domain)?";domain="+domain:"") +
+        ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
     };
 
     forumLogin(email, password) {

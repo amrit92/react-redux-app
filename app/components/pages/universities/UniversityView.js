@@ -6,8 +6,7 @@ import CustomTypeaheadList from '../../CustomTypeaheadList'
 import Autosuggest from 'react-autosuggest';
 import { getSuggestions, getSuggestionValue, renderSuggestion } from '../../helpers/AutosuggestHelper';
 import autosuggestTheme from '../../../stylesheets/_autosuggest.scss';
-import { hashHistory } from 'react-router'
-
+import { hashHistory } from 'react-router';
 
 export default class UniversityView extends Component {
     constructor() {
@@ -28,9 +27,55 @@ export default class UniversityView extends Component {
                             <h1 className="title">{university.name}</h1>
                         </div>
                     </div>
-                    <div className="content">
-                        {"university.content"}
 
+                    <div className="col-xs-12 col-sm-6 col-lg-8">
+                      <div className="row text-center">
+                        <div className="col-sm-3 col-xs-6">
+                          <h3>NA</h3>
+                          <small>university</small>
+                        </div>
+                        <div className="col-sm-3 col-xs-6">
+                          <h3>NA</h3>
+                          <small>acceptance rate</small>
+                        </div>
+                        <div className="col-sm-3 col-xs-6">
+                          <h3>NA</h3>
+                          <small>average GRE</small>
+                        </div>
+                      </div>
+                      <div className="clearfix">
+                      </div>
+                      <hr/>
+                      <div className="row text-center">
+                        <div className="col-sm-3 col-xs-6">
+                          <h3>NA</h3>
+                          <small>Tuition</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-xs-6 col-lg-4">
+                      
+                    </div>
+                    <div className="clearfix">
+                    </div>
+                    <hr/>
+                    <div className="col-sm-6">
+                      <h4> Course List</h4>
+                      <ul class="university-course-list">
+                        <li>
+                          <a href="/NA">NA</a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="clearfix">
+                    </div>
+                    <hr/>
+
+                    <div className=" col-xs-18 col-sm-12 col-lg-12">
+                        <h4> Description</h4>
+                        <p> {university.info} </p>
                     </div>
                 </div>
                 }

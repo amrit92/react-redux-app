@@ -1,5 +1,6 @@
 import firebase from '../../Firebase';
 import Auth from '../../auth/index';
+import {$} from 'jquery';
 
 import {mergeArrayObjectWithKey, mergeObjectWithKey} from '../../../utils/firebaseUtils';
 
@@ -46,13 +47,21 @@ export default class PostFirebase {
             try {
                 universityFirebase.on('value', function (snapshot) {
                     let university = snapshot.val();
-                                        console.log(snapshot.val());
-
                     if (university) {
-                        Auth.getProfile(university.uid).then((profile)=> {
-                            university.user = profile;
-                            resolve(mergeObjectWithKey(university, id));
-                        });
+                      var url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&indexpageids&exintro=&explaintext=&titles=' + university.name.split(' ').join('%20') + '&redirects=true';
+                      var xhr = new XMLHttpRequest();
+                      xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                          var jj = JSON.parse(this.responseText);
+                          var extract = jj.query.pages[jj.query.pageids[0]].extract
+                          university.info = extract;
+                          resolve(mergeObjectWithKey(university, id))
+                        }
+                      });
+
+                      xhr.open("GET", url);
+                      xhr.setRequestHeader("content-type", "application/json");
+                      xhr.send();                          
                     }
                     else {
                         reject('university\'s not exists');

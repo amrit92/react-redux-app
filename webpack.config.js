@@ -8,7 +8,7 @@ var config = {
     resolve: {root: [__dirname + "/sass"]},
     output: {
         path: __dirname + '/public',
-        filename: "[hash]-bundle.js"
+        filename: "bundle.js"
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
