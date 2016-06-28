@@ -15,22 +15,11 @@ export default class PostsList extends Component {
 
     onClick(e) {
         e.preventDefault();
-        let url = e.target.href;
-        this.setState({redirecting: true});
-        setTimeout(()=> {
-            window.location = url;
-        }, 300);
+        
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', function () {
-            if (this.props.awaitStatuses.getPosts == 'success') {
-                console.log(document.body.scrollHeight + 'vs' + document.body.scrollTop + 'vs' + window.innerHeight);
-                if (document.body.scrollHeight <= document.body.scrollTop + window.innerHeight) {
-                    this.props.loadMore();
-                }
-            }
-        }.bind(this));
+        
     }
 
     render() {

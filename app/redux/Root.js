@@ -11,7 +11,7 @@ export default class Root extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
+                <Router history={hashHistory}>
                     {Routes()}
                 </Router>
             </Provider>

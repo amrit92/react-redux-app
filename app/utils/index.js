@@ -7,7 +7,9 @@ export function compareUID(compare_id, Component){
 }
 
 export function setTitle(title){
+  if(typeof document !== "undefined"){
     document.title = title;
+  }
 }
 
 export {

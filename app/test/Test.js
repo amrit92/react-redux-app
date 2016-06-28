@@ -2,10 +2,9 @@ import Auth from '../api/auth/index';
 import 'whatwg-fetch';
 import firebase from '../api/Firebase';
 
-localStorage.setItem('hello', {a: 'tung', b: 'tien'});
 
-let myHeaders = new Headers();
-myHeaders.set('Access-Control-Allow-Origin', '*');
+// let myHeaders = new Headers();
+// myHeaders.set('Access-Control-Allow-Origin', '*');
 
 
 

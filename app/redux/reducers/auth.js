@@ -37,7 +37,6 @@ const getInitialState = () => {
 
 export default createReducer(getInitialState(), {
     [AUTH_LOGIN](state, action){
-        localStorage.setItem('authenticated', JSON.stringify(action.payload.userLogin));
         return update(state, {
             authenticated: {
                 guest: {$set: false},

@@ -138,12 +138,17 @@ export default class AuthFirebase {
       d.setTime(d.getTime() + (exdays*24*60*60*1000));
       var expires = "expires="+ d.toUTCString();
       var path_domain = "path=/;domain=.educron.com";
-      document.cookie = cname + "=" + cvalue + ";" + expires + ";" + path_domain;
+      if(typeof document !== "undefined"){
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";" + path_domain;
+      }
     }
 
      deleteCookie(name, path='/', domain='.educron.com') {
         // document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = name + "=" +
+        if(typeof document !== "undefined"){
+          document.cookie = name + "=" +
+        }
+      }
         ((path) ? ";path="+path:"")+
         ((domain)?";domain="+domain:"") +
         ";expires=Thu, 01 Jan 1970 00:00:01 GMT";

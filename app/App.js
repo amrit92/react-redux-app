@@ -15,3 +15,4 @@ import './stylesheets/style.scss';
 /* Test */
 import './test/Test.js';
 render(<Root/>, document.getElementById('root'))
+
