@@ -20,15 +20,17 @@ import h2o2 from "h2o2";
 import inert from "inert";
 import React from "react";
 import ReactDOM from "react-dom/server";
-import {RoutingContext, match} from "react-router";
+import {RouterContext, match} from "react-router";
 import createLocation from "history/lib/createLocation";
 import configureStore from "../app/redux/store/configureStore";
 import { Provider } from 'react-redux';
-import routes from "../app/routes/index";
+import routesContainer from "../app/routes/index";
 import url from "url";
 const fs = require('fs');
 const config = require('../config');
-const paths  = config.utils_paths;
+const paths  = (__dirname + '/../public/index.html');
+let routes = routesContainer;
+
 
 /*******************
  * end imports
@@ -102,11 +104,9 @@ server.route({
 
 //these are dynamic requests i need to render
 server.ext("onPreResponse", (request, reply) => {
-  if (typeof request.response.statusCode !== "undefined") {
-      return reply.continue();
-    }
 
-  match({routes, location: request.path}, (error, redirectLocation, renderProps) => {
+  match({routes: routes, location: request.path}, (error, redirectLocation, renderProps) => {
+
     if (redirectLocation) {
         reply.redirect(redirectLocation.pathname + redirectLocation.search)
     }
@@ -114,21 +114,41 @@ server.ext("onPreResponse", (request, reply) => {
         reply.continue();
     }
     else {
-
+      console.log(renderProps);
       //router rendering
       const reactString = ReactDOM.renderToString(
         <Provider store={store}>
-          <RoutingContext {...renderProps} />
+          <RouterContext {...renderProps} />
         </Provider>
       );
+      let output = (
+    `<!doctype html>
+    <html lang="en-us">
+      <head>
+        <meta charset="utf-8">
+        <title>Hapi Universal Redux</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+      </head>
+      <body>
+        <div id="react-root">${reactString}</div>
+        <script>
+          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
+          window.__UA__ = ${JSON.stringify(request.headers['user-agent'])}
+        </script>
+        <script src=bundle.js></script>
+      </body>
+    </html>`
+    );
+      const webserver = "";
 
       //grab the index file from dist and serve the index content with what we rendered
-      const template = fs.readFileSync(paths.public('index.html'), 'utf-8');
+      const template = fs.readFileSync(paths, 'utf-8');
       const injectedManifest = template.replace(
         new RegExp(`<div id="root">`),
         `<div id="root">` + reactString
       );
-      reply(injectedManifest);
+      console.log(output);
+      reply(output);
 
     }
   });

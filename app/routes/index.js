@@ -10,8 +10,8 @@ import {UniversityViewContainer, UniversitiesListContainer} from '../redux/conta
 
 
 
-export default () => {
-    return (
+module.exports= (
+      <Router>
         <Route path="/" component={AppMaster}>
             <IndexRoute component={UniversitiesListContainer}/>
             <Route path="/auth">
@@ -33,5 +33,5 @@ export default () => {
                 <Route path=":id" component={UniversityViewContainer}></Route>
             </Route>
         </Route>
-    )
-}
+      </Router>
+    );
